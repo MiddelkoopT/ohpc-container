@@ -1,3 +1,4 @@
 #!/bin/bash
 
-exec docker exec -it login sudo -u $USER -i $*
+container=${CONTAINER:-docker}
+exec $container exec -it login sudo -u $USER -i $*

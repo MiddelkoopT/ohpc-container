@@ -1,7 +1,8 @@
 #!/bin/bash
 
-echo "=== delete.sh"
+container=${CONTAINER:-docker}
+echo "=== delete.sh $container"
 
-docker volume rm cluster
-docker network rm cluster
-docker image rm node:latest head:latest openhpc:3
+$container volume rm cluster
+$container network rm cluster
+$container image rm node:latest head:latest openhpc:3

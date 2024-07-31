@@ -1,8 +1,14 @@
-# OpenHPC 3.x with Slurm running Rocky9 on Docker
+# OpenHPC 3.x with Slurm running Rocky9 in a container
 
 This is a simple single-user container environment for learning Slurm on OpenHPC 3.x with Rocky9.
 
 The cluster contains a head node, login node, and 8 compute nodes as separate containers with a shared docker network and shared docker storage.  Shared storage is in /data.
+
+If you want to use podman or another container system with the same syntax as Docker, set the `CONTAINER` environment variable as follows:
+
+```bash
+export CONTAINER=podman
+```
 
 Run with
 ```bash
@@ -21,4 +27,4 @@ When you are done
 ./delete.sh
 ```
 
-This will remove the Docker cluster network, storage, and container images.  Run `docker image prune` to reclaim space.
+This will remove the container cluster network, storage, and container images.  You may want to prune the container images as well.
