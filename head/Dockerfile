@@ -1,0 +1,15 @@
+FROM openhpc:3
+LABEL maintainer="tmiddelkoop@internet2.edu"
+
+RUN dnf install -y ohpc-slurm-server
+
+RUN cp /etc/slurm/slurm.conf.ohpc /etc/slurm/slurm.conf && \
+    perl -pi -e "s/SlurmctldHost=\S+/SlurmctldHost=head/" /etc/slurm/slurm.conf && \
+    perl -pi -e "s/ProctrackType=\S+/ProctrackType=proctrack\/linuxproc/" /etc/slurm/slurm.conf && \
+    perl -pi -e "s/^TaskPlugin=\S+/#TaskPlugin=/" /etc/slurm/slurm.conf && \
+    cp /etc/slurm/cgroup.conf.example /etc/slurm/cgroup.conf && \
+    echo 'CgroupPlugin=cgroup/v1' >> /etc/slurm/cgroup.conf && \
+    perl -pi -e 's/^NodeName=c\[1-4\].*$/NodeName=node-[0-9] State=UNKNOWN/' /etc/slurm/slurm.conf && \
+    perl -pi -e 's/Nodes=c\[1-4\]/Nodes=node-[0-9]/' /etc/slurm/slurm.conf
+
+CMD sudo -u munge /usr/sbin/munged -f && /usr/sbin/slurmctld -D -s
