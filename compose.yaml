@@ -1,0 +1,41 @@
+## This docker-compose does not work - it provided to be to fragile and have too many (incomplete) hacks.
+name: ohpc-container
+
+networks:
+  ohpc-container-network:
+
+volumes:
+  ohpc-container-data:
+
+services:
+  head:
+    hostname: head
+    image: ohpc-container/head
+    build:
+      context: ./head
+    networks:
+      - ohpc-container-network
+    volumes:
+      - ohpc-container-data:/data
+  login:
+    hostname: login
+    image: ohpc-container/node
+    build:
+      context: ./node
+    networks:
+      - ohpc-container-network
+    volumes:
+      - ohpc-container-data:/data
+    depends_on:
+      - head
+  node:
+    image: ohpc-container/node
+    build:
+      context: ./node
+    networks:
+      - ohpc-container-network
+    volumes:
+      - ohpc-container-data:/data
+    depends_on:
+      - head
+    scale: 8
