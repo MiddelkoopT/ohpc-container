@@ -15,6 +15,9 @@ RUN dnf install -y dnf-plugins-core && \
 RUN dnf install -y munge && \
     /usr/sbin/create-munge-key
 
+## Extra common packages
+RUN dnf install -y iputils
+
 ARG USER=auser
 RUN useradd --create-home --shell=/bin/bash --user-group $USER
 RUN install -v -dp --owner=$USER --group=$USER /data /scratch

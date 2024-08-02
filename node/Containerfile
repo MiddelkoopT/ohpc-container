@@ -1,4 +1,4 @@
-FROM openhpc:3
+FROM ohpc-container/openhpc:3
 LABEL maintainer="tmiddelkoop@internet2.edu"
 
 ## Base compute node
@@ -9,4 +9,4 @@ RUN dnf install -y ohpc-base-compute ohpc-slurm-client lmod-ohpc \
     ohpc-gnu12-runtimes gnu12-compilers-ohpc \ 
     openmpi4-gnu12-ohpc openblas-gnu12-ohpc netcdf-gnu12-openmpi4-ohpc
 
-CMD sudo -u munge /usr/sbin/munged -f && while ! /usr/sbin/slurmd -D -s --conf-server head ; do sleep 2 ; done
+CMD ["/bin/bash", "-c", "sudo -u munge /usr/sbin/munged -f && while ! /usr/sbin/slurmd -D -s --conf-server head ; do sleep 2 ; done"]
