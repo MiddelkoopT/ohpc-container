@@ -1,4 +1,4 @@
-## This docker-compose does not work - it provided to be to fragile and have too many (incomplete) hacks.
+## This docker-compose does not work - it provided to be too fragile and have too many (incomplete) hacks.
 name: ohpc-container
 
 networks:
