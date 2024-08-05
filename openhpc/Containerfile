@@ -16,7 +16,7 @@ RUN dnf install -y munge && \
     /usr/sbin/create-munge-key
 
 ## Extra common packages
-RUN dnf install -y iputils
+RUN dnf install -y iputils vim 
 
 ARG USER=auser
 RUN useradd --create-home --shell=/bin/bash --user-group $USER
