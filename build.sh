@@ -2,7 +2,6 @@
 
 container=${CONTAINER:-docker}
 user=${USER:-$USER}
-uid=${UID:-$UID}
 arch=$(uname -m)
 
 echo "=== setup $container"
@@ -13,7 +12,6 @@ set -e
 echo '=== build openhpc'
 $container build -t ohpc-container/openhpc:3 -f openhpc/Containerfile openhpc \
   --build-arg USER=$user \
-  --build-arg UID=$uid \
   --build-arg ARCH=${arch/arm64/aarch64}
 
 for I in head node ; do

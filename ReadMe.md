@@ -34,6 +34,22 @@ This will remove the container cluster network, storage, and container images.  
 ## Examples
 
 Copy examples to project folder
+
+If you have rsync installed locally
+```bash
+rsync -av -e "docker exec -i --user $USER:$USER" ./examples head:/project/$USER/
+```
+
+If you don't have rsync
 ```bash
 docker cp examples login:/project/$USER/
+docker exec -i login chown -R $USER:$USER /project/$USER
 ```
+
+And run the MPI example
+```bash
+cd /project/$USER/examples/mpi
+bash run.sh
+```
+
+Check the results in the `slurm-*.out` file
