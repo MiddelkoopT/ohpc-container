@@ -18,6 +18,9 @@ RUN dnf install -y munge && \
 ## Extra common packages
 RUN dnf install -y iputils vim 
 
+## Create user
 ARG USER=auser
-RUN useradd --create-home --shell=/bin/bash --user-group $USER
-RUN install -v -dp --owner=$USER --group=$USER /data /scratch
+ARG UID=1000
+RUN useradd --create-home --shell=/bin/bash --uid=$UID --user-group $USER && \
+    install -dp /project /scratch && \
+    install -v -dp --owner=$USER --group=$USER /project/$USER /scratch/$USER
