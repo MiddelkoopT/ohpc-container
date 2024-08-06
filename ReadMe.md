@@ -35,9 +35,9 @@ This will remove the container cluster network, storage, and container images.  
 
 Copy examples to project folder
 
-If you have rsync installed locally
+If you have rsync installed locally (look at ./rsync.sh for details), run in a new local terminal:
 ```bash
-rsync -av -e "docker exec -i --user $USER:$USER" ./examples head:/project/$USER/
+./rsync.sh -av ./examples head:/project/$USER/
 ```
 
 If you don't have rsync
