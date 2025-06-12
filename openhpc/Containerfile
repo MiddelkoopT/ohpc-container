@@ -8,8 +8,7 @@ RUN dnf install -y http://repos.openhpc.community/OpenHPC/3/EL_9/$ARCH/ohpc-rele
 RUN dnf install -y dnf-plugins-core && \
     dnf config-manager --set-enabled crb && \
     dnf upgrade -y && \
-    dnf swap -y curl-minimal curl && \
-    dnf install -y curl unzip jq procps-ng iproute bind-utils findutils && \
+    dnf install -y unzip jq procps-ng iproute bind-utils findutils && \
     dnf install -y ohpc-base
 
 ## Configure common image
