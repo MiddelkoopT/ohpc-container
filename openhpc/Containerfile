@@ -1,4 +1,4 @@
-FROM registry.docker.com/library/rockylinux:9
+FROM registry.docker.com/rockylinux/rockylinux:9
 LABEL maintainer="tmiddelkoop@internet2.edu"
 
 ## Base install
